@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Layne Estética Avançada</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gradient">
+
+  <!-- Animação de fundo -->
+  <canvas id="bgCanvas"></canvas>
+
+  <!-- Navbar -->
+  <nav class="bg-purple-200 shadow fixed w-full top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="font-semibold text-purple-700">Anamnese Layne Estética</h1>
+      <div class="space-x-6 text-purple-700">
+        <button onclick="showSection('cliente')">Cliente</button>
+        <button onclick="showSection('profissional')">Área do Profissional</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Conteúdo -->
+  <main class="max-w-6xl mx-auto pt-28 px-6">
+
+    <!-- ÁREA DO CLIENTE -->
+    <section id="cliente">
+      <h2 class="text-2xl font-semibold text-purple-700 mb-6">Ficha de Anamnese</h2>
+
+      <form id="formAnamnese" class="bg-white rounded-xl shadow p-6 space-y-6">
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <input required class="input" name="nome" placeholder="Nome completo">
+          <input class="input" name="telefone" id="telefone" placeholder="Telefone">
+          <input class="input" name="email" placeholder="E-mail">
+          <input class="input" name="idade" placeholder="Idade">
+        </div>
+
+        <select class="input" name="modalidade" onchange="renderModalidade(this.value)">
+          <option value="">Selecione a modalidade</option>
+          <option>Estética Corporal</option>
+          <option>Estética Facial</option>
+          <option>Podologia</option>
+          <option>Pré e Pós-Cirúrgico</option>
+          <option>Visagismo</option>
+          <option>Massagem Corporal</option>
+          <option>Maquiagem Profissional</option>
+          <option>Estética Capilar</option>
+          <option>Depilação</option>
+          <option>Cosmetologia</option>
+        </select>
+
+        <div id="perguntas" class="space-y-4"></div>
+
+        <button class="bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded">
+          Salvar ficha
+        </button>
+      </form>
+    </section>
+
+    <!-- ÁREA DO PROFISSIONAL -->
+    <section id="profissional" class="hidden">
+      <h2 class="text-2xl font-semibold text-purple-700 mb-6">Pacientes</h2>
+      <div id="listaPacientes" class="grid md:grid-cols-2 gap-4"></div>
+    </section>
+
+    <!-- VISUALIZAR FICHA -->
+    <section id="verFicha" class="hidden">
+      <button onclick="showSection('profissional')" class="text-purple-600 mb-4">← Voltar</button>
+      <div id="conteudoFicha" class="bg-white rounded-xl shadow p-6"></div>
+    </section>
+
+  </main>
+
+  <footer class="mt-12 py-4 text-center text-purple-600">
+    With &hearts; for Karolyane by Mark - &copy; 2025 
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

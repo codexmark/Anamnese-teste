@@ -1,0 +1,27 @@
+body {
+  position: relative;
+  overflow-x: hidden;
+}
+
+.bg-gradient {
+  background: linear-gradient(135deg, #f5efff, #fdfbff);
+}
+
+.input {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #e5d9ff;
+  border-radius: 0.5rem;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #c4b5fd;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
