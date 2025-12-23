@@ -121,7 +121,15 @@ function verFicha(i) {
   Object.entries(p).forEach(([k, v]) => {
     html += `<p><strong>${k}:</strong> ${v}</p>`;
   });
-  document.getElementById("conteudoFicha").innerHTML = html;
+  const fichaEl = document.getElementById("conteudoFicha");
+  fichaEl.innerHTML = html;
+  // Aplica imagem de fundo com sobreposição para legibilidade
+  // Usamos `contain` para que a imagem seja redimensionada ao card sem cortar
+  fichaEl.style.backgroundImage = "linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)), url('assets/fundoficha.png')";
+  fichaEl.style.backgroundSize = 'contain';
+  fichaEl.style.backgroundPosition = 'center';
+  fichaEl.style.backgroundRepeat = 'no-repeat';
+  fichaEl.style.backgroundOrigin = 'content-box';
   showSection("verFicha");
 }
 

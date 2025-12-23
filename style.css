@@ -9,6 +9,23 @@ html {
   height: 100%;
 }
 
+.nav-logo {
+  max-height: 48px;
+  width: auto;
+  margin-left: 0.5rem;
+  display: block;
+}
+
+/* Conteúdo da ficha com sobreposição para legibilidade */
+#conteudoFicha {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: 1rem;
+  min-height: 220px;
+  background-color: rgba(255,255,255,0.9);
+}
+
 body {
   position: relative;
   overflow-x: hidden;
@@ -84,6 +101,18 @@ nav button:active {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .nav-logo {
+    max-height: 56px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav-logo {
+    max-height: 72px;
+  }
 }
 
 /* Mobile First - Spacing */
