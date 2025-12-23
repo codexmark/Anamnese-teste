@@ -2,47 +2,45 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Layne Estética Avançada</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Tailwind via CDN até pq ta rodando diretão.
-      Não façam isso em produção porque não é performatico.
-      Isso aqui é apenas um teste -->
+  <!-- Tailwind CDN (protótipo) -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="bg-gradient">
 
-  <!-- chama a animação de fundo -->
+  <!-- Canvas de fundo -->
   <canvas id="bgCanvas"></canvas>
 
-  <!-- barra de navegação básica -->
-  <nav class="bg-purple-200 shadow fixed w-full top-0 z-50" style="display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 1rem;">
-    <img src="assets/logonav.png" alt="Layne Estética" class="nav-logo">
-    <div class="text-purple-700" style="display: flex; gap: 0.5rem;">
+  <!-- NAVBAR -->
+  <nav class="bg-purple-200 fixed w-full top-0 z-50 flex items-center justify-between px-6 py-3 shadow">
+    <img src="assets/logonav.png" class="nav-logo" alt="Layne Estética">
+    <div class="flex gap-4 text-purple-700 font-medium">
       <button onclick="showSection('cliente')">Cliente</button>
       <button onclick="showSection('profissional')">Profissional</button>
     </div>
   </nav>
 
-  <!-- Conteúdo de fato começa aqui \/\/\/ -->
   <main>
 
-    <!-- ÁREA DO CLIENTE -->
+    <!-- CLIENTE -->
     <section id="cliente">
       <h2 class="text-2xl font-semibold text-purple-700 mb-6">Ficha de Anamnese</h2>
 
       <form id="formAnamnese" class="bg-white rounded-xl shadow p-6 space-y-6">
 
         <div class="grid-mobile">
-          <input required class="input" name="nome" placeholder="Nome completo">
+          <input class="input" name="nome" placeholder="Nome completo" required>
           <input class="input" name="telefone" id="telefone" placeholder="Telefone">
           <input class="input" name="email" placeholder="E-mail">
           <input class="input" name="idade" placeholder="Idade">
         </div>
 
-        <select class="input" name="modalidade" onchange="renderModalidade(this.value)">
+        <select class="input" name="modalidade" onchange="renderModalidade(this.value)" required>
           <option value="">Selecione a modalidade</option>
           <option>Estética Corporal</option>
           <option>Estética Facial</option>
@@ -58,32 +56,41 @@
 
         <div id="perguntas" class="space-y-4"></div>
 
-        <button type="submit" class="bg-purple-500 hover:bg-purple-600 text-white">
+        <!-- ASSINATURA -->
+        <div>
+          <p class="text-sm text-purple-700 mb-2">Assinatura do cliente</p>
+          <div class="border border-purple-300 rounded-lg">
+            <canvas id="signaturePad" width="600" height="180"></canvas>
+          </div>
+          <button type="button" onclick="clearSignature()" class="text-sm text-purple-600 mt-2">
+            Limpar assinatura
+          </button>
+        </div>
+
+        <button type="submit"
+          class="bg-purple-500 hover:bg-purple-600 text-white font-semibold rounded-lg py-3 w-full">
           Salvar ficha
         </button>
+
       </form>
     </section>
 
-    <!-- ÁREA DO PROFISSIONAL -->
+    <!-- PROFISSIONAL -->
     <section id="profissional" class="hidden">
       <h2 class="text-2xl font-semibold text-purple-700 mb-6">Pacientes</h2>
       <div id="listaPacientes" class="grid-mobile"></div>
     </section>
 
-    <!-- VISUALIZAR FICHA -->
+    <!-- VER FICHA -->
     <section id="verFicha" class="hidden">
-      <button onclick="showSection('profissional')" class="back-button text-purple-600">← Voltar</button>
+      <button onclick="showSection('profissional')" class="back-button">← Voltar</button>
       <div id="conteudoFicha" class="bg-white rounded-xl shadow p-6"></div>
     </section>
 
   </main>
 
-  <footer class="mt-12 py-4 text-center text-purple-600">
-    With &hearts; for Karolyane by Mark - &copy; 2025
-    <marquee>Layne Estética Avançada diz: Durante o desenvolvimento desta página
-             não foi utilizado nenhuma espécie de I.A. Código simples limpo raiz.
-             Desenvolvido exclusivamente para fins de teste e está sujeito a 
-             mudanças a qualquer momento sem prévio aviso.</marquee>
+  <footer class="mt-16 py-6 text-center text-purple-600">
+    With ♥ for Karolyane by Mark — © 2025
   </footer>
 
   <script src="script.js"></script>
