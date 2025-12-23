@@ -16,7 +16,7 @@ html {
   display: block;
 }
 
-/* Conteúdo da ficha com sobreposição para legibilidade */
+
 #conteudoFicha {
   background-position: center;
   background-size: contain;
@@ -40,7 +40,8 @@ body {
   min-height: 100vh;
 }
 
-/* Mobile First - Inputs */
+/* Mobile First - Inputs coisa de fresco mas que de fato
+   melhora muito o layout em telas pequenas */
 .input {
   width: 100%;
   padding: 0.75rem;
@@ -57,7 +58,7 @@ body {
   box-shadow: 0 0 0 3px rgba(196, 181, 253, 0.1);
 }
 
-/* Canvas */
+/* chama o Canvas */
 canvas {
   position: fixed;
   top: 0;
@@ -67,7 +68,7 @@ canvas {
   height: 100%;
 }
 
-/* Mobile First - Typography */
+/* Mobile First - letras */
 h1 {
   font-size: 1.25rem;
 }
@@ -76,7 +77,7 @@ h2 {
   font-size: 1.5rem;
 }
 
-/* Mobile First - Navbar */
+/* Mobile First - barra de navegação */
 nav {
   padding: 1rem 1rem !important;
 }
@@ -115,7 +116,7 @@ nav button:active {
   }
 }
 
-/* Mobile First - Spacing */
+/* Mobile First - espaçamento */
 main {
   padding-top: 5rem;
   padding-left: 1rem;
@@ -153,7 +154,7 @@ button[type='submit'] {
   opacity: 0.7;
 }
 
-/* Footer */
+/* rodapé e suas medidas */
 footer {
   margin-top: auto;
   padding: 1.5rem 1rem;

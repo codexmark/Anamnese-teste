@@ -123,8 +123,8 @@ function verFicha(i) {
   });
   const fichaEl = document.getElementById("conteudoFicha");
   fichaEl.innerHTML = html;
-  // Aplica imagem de fundo com sobreposição para legibilidade
-  // Usamos `contain` para que a imagem seja redimensionada ao card sem cortar
+  // imagem no fundo do card da ficha F dimensionamento kkk
+  //`contain` para que a imagem seja redimensionada ao card sem cortar
   fichaEl.style.backgroundImage = "linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)), url('assets/fundoficha.png')";
   fichaEl.style.backgroundSize = 'contain';
   fichaEl.style.backgroundPosition = 'center';
@@ -133,7 +133,7 @@ function verFicha(i) {
   showSection("verFicha");
 }
 
-/* Máscara telefone */
+//Máscara telefone
 document.getElementById("telefone").addEventListener("input", e => {
   e.target.value = e.target.value
     .replace(/\D/g, "")
@@ -142,7 +142,7 @@ document.getElementById("telefone").addEventListener("input", e => {
     .slice(0, 15);
 });
 
-/* Animação de fundo - Corações */
+//Animação de fundo - Corações borboleta do logo quibei de um outro que vi na net
 const canvas = document.getElementById("bgCanvas");
 const ctx = canvas.getContext("2d");
 canvas.width = innerWidth;
