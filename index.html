@@ -1,100 +1,129 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Layne Estética Avançada</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Layne Estética Avançada</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Tailwind CDN (protótipo) -->
-  <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CDN (protótipo) -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-  <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body class="bg-gradient">
+  <body class="bg-gradient">
+    <!-- Fundo animado -->
+    <canvas id="bgCanvas"></canvas>
 
-  <!-- Fundo animado -->
-  <canvas id="bgCanvas"></canvas>
-
-  <!-- NAVBAR -->
-  <nav class="navbar">
-    <img src="assets/logonav.png" class="nav-logo" alt="Layne Estética">
-    <div class="nav-actions">
-      <button onclick="showSection('cliente')">Cliente</button>
-      <button onclick="showSection('profissional')">Profissional</button>
-    </div>
-  </nav>
-
-  <main>
-
-    <!-- CLIENTE -->
-    
-    <section id="cliente" class="section">
-      <h2 class="title">Ficha de Anamnese</h2>
-
-      <form id="formAnamnese" class="card">
-
-        <div class="form-grid">
-          <input class="input" name="nome" placeholder="Nome completo" required>
-          <input class="input" name="telefone" id="telefone" placeholder="Telefone">
-          <input class="input" name="email" placeholder="E-mail">
-          <input class="input" name="idade" placeholder="Idade">
-        </div>
-
-        <select class="input" name="modalidade"
-                onchange="renderModalidade(this.value)" required>
-          <option value="">Selecione a modalidade</option>
-          <option>Estética Corporal</option>
-          <option>Estética Facial</option>
-          <option>Podologia</option>
-          <option>Pré e Pós-Cirúrgico</option>
-          <option>Visagismo</option>
-          <option>Massagem Corporal</option>
-          <option>Maquiagem Profissional</option>
-          <option>Estética Capilar</option>
-          <option>Depilação</option>
-          <option>Cosmetologia</option>
-        </select>
-
-        <div id="perguntas" class="questions"></div>
-
-        <!-- ASSINATURA -->
-        <div class="signature-block">
-          <p class="label">Assinatura do cliente</p>
-          <canvas id="signaturePad" width="600" height="180"></canvas>
-          <button type="button" onclick="clearSignature()" class="link">
-            Limpar assinatura
-          </button>
-        </div>
-
-        <button type="submit" class="btn-primary">
-          Salvar ficha
-        </button>
-
-      </form>
-    </section>
-
-    <!-- PROFISSIONAL -->
-    <section id="profissional" class="section hidden">
-      <h2 class="title">Pacientes</h2>
-      <div id="listaPacientes" class="list-grid"></div>
-    </section>
-
-    <!-- VER FICHA -->
-    <section id="verFicha" class="section hidden">
-      <button onclick="showSection('profissional')" class="link">← Voltar</button>
-      <div id="conteudoFicha" class="card">
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <img src="assets/logonav.png" class="nav-logo" alt="Layne Estética" />
+      <div class="nav-actions">
+        <button onclick="showSection('cliente')">Cliente</button>
+        <button onclick="requestAccess()">Profissional</button>
       </div>
-    </section>
+    </nav>
 
-  </main>
+    <main>
+      <!-- CLIENTE -->
 
-  <footer class="footer">
-    With ♥ for Karolyane by Mark — © 2025
-    <marquee behavior="scroll" direction="left" scrollamount="3">
-      Layne Estética Avançada  - Agende sua visita - Endereço: Rua Exemplo, 123, Porto Velho, Rondônia - Contato: (99) 98765-4321
-  </footer>
+      <section id="cliente" class="section">
+        <h2 class="title">Ficha de Anamnese</h2>
 
-  <script src="script.js"></script>
-</body>
+        <form id="formAnamnese" class="card">
+          <div class="form-grid">
+            <input
+              class="input"
+              name="nome"
+              placeholder="Nome completo"
+              required
+            />
+            <input
+              class="input"
+              name="telefone"
+              id="telefone"
+              placeholder="Telefone"
+            />
+            <input class="input" name="email" placeholder="E-mail" />
+            <input class="input" name="idade" placeholder="Idade" />
+          </div>
+
+          <select
+            class="input"
+            name="modalidade"
+            onchange="renderModalidade(this.value)"
+            required
+          >
+            <option value="">Selecione a modalidade</option>
+            <option>Estética Corporal</option>
+            <option>Estética Facial</option>
+            <option>Podologia</option>
+            <option>Pré e Pós-Cirúrgico</option>
+            <option>Visagismo</option>
+            <option>Massagem Corporal</option>
+            <option>Maquiagem Profissional</option>
+            <option>Estética Capilar</option>
+            <option>Depilação</option>
+            <option>Cosmetologia</option>
+          </select>
+
+          <div id="perguntas" class="questions"></div>
+
+          <!-- ASSINATURA -->
+          <div class="signature-block">
+            <p class="label">Assinatura do cliente</p>
+            <canvas id="signaturePad" width="600" height="180"></canvas>
+            <button type="button" onclick="clearSignature()" class="link">
+              Limpar assinatura
+            </button>
+          </div>
+
+          <button type="submit" class="btn-primary">Salvar ficha</button>
+        </form>
+      </section>
+
+      <!-- PROFISSIONAL -->
+      <section id="profissional" class="section hidden">
+        <h2 class="title">Pacientes</h2>
+        <div id="listaPacientes" class="list-grid"></div>
+      </section>
+
+      <!-- VER FICHA -->
+      <section id="verFicha" class="section hidden">
+        <button onclick="showSection('profissional')" class="link">
+          ← Voltar
+        </button>
+        <div id="conteudoFicha" class="card"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      With ♥ for Karolyane by Mark — © 2025
+      <marquee behavior="scroll" direction="left" scrollamount="3">
+        Layne Estética Avançada - Agende sua visita - Endereço: Rua Exemplo,
+        123, Porto Velho, Rondônia - Contato: (99) 98765-4321</marquee
+      >
+    </footer>
+
+    <script src="script.js"></script>
+
+    <!-- MODAL DE PIN -->
+    <div
+      id="pinModal"
+      class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+    >
+      <div class="card max-w-sm w-full">
+        <h2 class="title">Acesso Restrito</h2>
+        <p class="label">Digite o PIN para acessar</p>
+        <input
+          type="password"
+          id="pinInput"
+          class="input"
+          placeholder="PIN de acesso"
+        />
+        <button onclick="checkPin()" class="btn-primary">Entrar</button>
+        <button onclick="closePinModal()" class="link">Cancelar</button>
+      </div>
+    </div>
+  </body>
 </html>

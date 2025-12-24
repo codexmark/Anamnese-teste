@@ -1,54 +1,76 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   const perguntasPorModalidade = {
     "Estética Facial": [
-      "Tipo de pele","Acne","Manchas","Uso de ácidos",
-      "Sensibilidade","Rosácea","Rotina de skincare"
+      "Tipo de pele",
+      "Acne",
+      "Manchas",
+      "Uso de ácidos",
+      "Sensibilidade",
+      "Rosácea",
+      "Rotina de skincare",
     ],
     "Estética Corporal": [
-      "Flacidez","Celulite","Estrias",
-      "Retenção líquida","Atividade física","Cirurgias prévias"
+      "Flacidez",
+      "Celulite",
+      "Estrias",
+      "Retenção líquida",
+      "Atividade física",
+      "Cirurgias prévias",
     ],
-    "Podologia": [
-      "Diabetes","Unhas encravadas","Calos",
-      "Fissuras","Micoses","Uso de palmilhas"
+    Podologia: [
+      "Diabetes",
+      "Unhas encravadas",
+      "Calos",
+      "Fissuras",
+      "Micoses",
+      "Uso de palmilhas",
     ],
     "Pré e Pós-Cirúrgico": [
-      "Tipo de cirurgia","Data da cirurgia",
-      "Edema","Drenos","Liberação médica"
+      "Tipo de cirurgia",
+      "Data da cirurgia",
+      "Edema",
+      "Drenos",
+      "Liberação médica",
     ],
-    "Visagismo": [
-      "Formato do rosto","Estilo pessoal",
-      "Profissão","Preferência de cores"
+    Visagismo: [
+      "Formato do rosto",
+      "Estilo pessoal",
+      "Profissão",
+      "Preferência de cores",
     ],
     "Massagem Corporal": [
-      "Dores musculares","Estresse",
-      "Uso de medicamentos","Objetivo da massagem"
+      "Dores musculares",
+      "Estresse",
+      "Uso de medicamentos",
+      "Objetivo da massagem",
     ],
     "Maquiagem Profissional": [
-      "Evento","Tipo de pele",
-      "Alergias","Estilo desejado"
+      "Evento",
+      "Tipo de pele",
+      "Alergias",
+      "Estilo desejado",
     ],
     "Estética Capilar": [
-      "Queda capilar","Oleosidade",
-      "Química","Caspa","Sensibilidade no couro cabeludo"
+      "Queda capilar",
+      "Oleosidade",
+      "Química",
+      "Caspa",
+      "Sensibilidade no couro cabeludo",
     ],
-    "Depilação": [
-      "Método preferido","Sensibilidade",
-      "Foliculite","Alergias"
-    ],
-    "Cosmetologia": [
+    Depilação: ["Método preferido", "Sensibilidade", "Foliculite", "Alergias"],
+    Cosmetologia: [
       "Uso contínuo de cosméticos",
-      "Alergias","Tratamentos em andamento"
-    ]
+      "Alergias",
+      "Tratamentos em andamento",
+    ],
   };
 
-  window.renderModalidade = mod => {
+  window.renderModalidade = (mod) => {
     const box = document.getElementById("perguntas");
     box.innerHTML = "";
     if (!perguntasPorModalidade[mod]) return;
 
-    perguntasPorModalidade[mod].forEach(p => {
+    perguntasPorModalidade[mod].forEach((p) => {
       box.innerHTML += `
         <div>
           <label class="label">${p}</label>
@@ -57,8 +79,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  window.showSection = id => {
-    ["cliente","profissional","verFicha"].forEach(s =>
+  window.showSection = (id) => {
+    ["cliente", "profissional", "verFicha"].forEach((s) =>
       document.getElementById(s).classList.add("hidden")
     );
     document.getElementById(id).classList.remove("hidden");
@@ -73,40 +95,43 @@ document.addEventListener("DOMContentLoaded", () => {
   ctx.lineCap = "round";
   ctx.strokeStyle = "#6b21a8";
 
-  const pos = e => {
+  const pos = (e) => {
     const r = sigCanvas.getBoundingClientRect();
     if (e.touches) {
-      return { x: e.touches[0].clientX - r.left, y: e.touches[0].clientY - r.top };
+      return {
+        x: e.touches[0].clientX - r.left,
+        y: e.touches[0].clientY - r.top,
+      };
     }
     return { x: e.clientX - r.left, y: e.clientY - r.top };
   };
 
-  ["mousedown","touchstart"].forEach(ev =>
-    sigCanvas.addEventListener(ev, e => {
+  ["mousedown", "touchstart"].forEach((ev) =>
+    sigCanvas.addEventListener(ev, (e) => {
       e.preventDefault();
       drawing = true;
       const p = pos(e);
       ctx.beginPath();
-      ctx.moveTo(p.x,p.y);
+      ctx.moveTo(p.x, p.y);
     })
   );
 
-  ["mousemove","touchmove"].forEach(ev =>
-    sigCanvas.addEventListener(ev, e => {
+  ["mousemove", "touchmove"].forEach((ev) =>
+    sigCanvas.addEventListener(ev, (e) => {
       if (!drawing) return;
       e.preventDefault();
       const p = pos(e);
-      ctx.lineTo(p.x,p.y);
+      ctx.lineTo(p.x, p.y);
       ctx.stroke();
     })
   );
 
-  ["mouseup","mouseleave","touchend"].forEach(ev =>
-    sigCanvas.addEventListener(ev, () => drawing = false)
+  ["mouseup", "mouseleave", "touchend"].forEach((ev) =>
+    sigCanvas.addEventListener(ev, () => (drawing = false))
   );
 
   window.clearSignature = () =>
-    ctx.clearRect(0,0,sigCanvas.width,sigCanvas.height);
+    ctx.clearRect(0, 0, sigCanvas.width, sigCanvas.height);
 
   const hasSignature = () => {
     const blank = document.createElement("canvas");
@@ -115,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return sigCanvas.toDataURL() !== blank.toDataURL();
   };
 
-  document.getElementById("formAnamnese").addEventListener("submit", e => {
+  document.getElementById("formAnamnese").addEventListener("submit", (e) => {
     e.preventDefault();
     if (!hasSignature()) return alert("Assinatura obrigatória.");
 
@@ -135,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const lista = document.getElementById("listaPacientes");
     const db = JSON.parse(localStorage.getItem("pacientes") || "[]");
     lista.innerHTML = "";
-    db.forEach((p,i) => {
+    db.forEach((p, i) => {
       lista.innerHTML += `
         <div class="card">
           <strong>${p.nome}</strong>
@@ -145,17 +170,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  window.verFicha = i => {
+  window.verFicha = (i) => {
     const p = JSON.parse(localStorage.getItem("pacientes"))[i];
     let html = `<h3 class="title">${p.nome}</h3>`;
-    Object.entries(p).forEach(([k,v]) => {
+    Object.entries(p).forEach(([k, v]) => {
       if (k !== "assinatura") html += `<p><strong>${k}:</strong> ${v}</p>`;
     });
     html += `<img src="${p.assinatura}" class="signature-img">`;
     document.getElementById("conteudoFicha").innerHTML = html;
     showSection("verFicha");
   };
-
 });
 
 const bg = document.getElementById("bgCanvas");
@@ -168,7 +192,7 @@ let hearts = Array.from({ length: 40 }, () => ({
   x: Math.random() * bg.width,
   y: Math.random() * bg.height,
   s: Math.random() * 20 + 10,
-  v: Math.random() * 0.8 + 0.3
+  v: Math.random() * 0.8 + 0.3,
 }));
 
 function drawHeart(x, y, s) {
@@ -184,7 +208,7 @@ function drawHeart(x, y, s) {
 
 function animateBg() {
   bctx.clearRect(0, 0, bg.width, bg.height);
-  hearts.forEach(h => {
+  hearts.forEach((h) => {
     drawHeart(h.x, h.y, h.s);
     h.y += h.v;
     if (h.y > bg.height) {
@@ -196,3 +220,21 @@ function animateBg() {
 }
 
 animateBg();
+
+// PIN de acesso (pode trocar por outro valor)
+const ACCESS_PIN = "251297";
+window.requestAccess = () => {
+  document.getElementById("pinModal").classList.remove("hidden");
+};
+window.closePinModal = () => {
+  document.getElementById("pinModal").classList.add("hidden");
+};
+window.checkPin = () => {
+  const pin = document.getElementById("pinInput").value;
+  if (pin === ACCESS_PIN) {
+    closePinModal();
+    showSection("profissional");
+  } else {
+    alert("PIN incorreto. Tente novamente.");
+  }
+};
