@@ -222,7 +222,7 @@ function animateBg() {
 animateBg();
 
 // PIN de acesso (pode trocar por outro valor)
-const ACCESS_PIN = "251297";
+const ACCESS_PIN = "102030";
 window.requestAccess = () => {
   document.getElementById("pinModal").classList.remove("hidden");
 };
