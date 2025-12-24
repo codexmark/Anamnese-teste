@@ -150,8 +150,8 @@ main {
 
 #conteudoFicha.card {
   background-image: url("assets/fundoficha.png");
-  background-blend-mode: multiply;
-  background-color: rgba(0,0,0,0);
+  background-blend-mode: difference;
+  background-color: rgba(0, 0, 0, 0);
   background-size: cover;
   background-position: center;
   }
