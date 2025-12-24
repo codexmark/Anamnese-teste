@@ -157,3 +157,42 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
 });
+
+const bg = document.getElementById("bgCanvas");
+const bctx = bg.getContext("2d");
+
+bg.width = innerWidth;
+bg.height = innerHeight;
+
+let hearts = Array.from({ length: 40 }, () => ({
+  x: Math.random() * bg.width,
+  y: Math.random() * bg.height,
+  s: Math.random() * 20 + 10,
+  v: Math.random() * 0.8 + 0.3
+}));
+
+function drawHeart(x, y, s) {
+  bctx.fillStyle = "rgba(180,160,255,0.4)";
+  bctx.beginPath();
+  bctx.moveTo(x, y + s / 4);
+  bctx.bezierCurveTo(x - s / 2, y - s / 4, x - s, y, x - s / 2, y + s / 2);
+  bctx.bezierCurveTo(x - s / 2.5, y + s, x, y + s, x, y + s);
+  bctx.bezierCurveTo(x, y + s, x + s / 2.5, y + s, x + s / 2, y + s / 2);
+  bctx.bezierCurveTo(x + s, y, x + s / 2, y - s / 4, x, y + s / 4);
+  bctx.fill();
+}
+
+function animateBg() {
+  bctx.clearRect(0, 0, bg.width, bg.height);
+  hearts.forEach(h => {
+    drawHeart(h.x, h.y, h.s);
+    h.y += h.v;
+    if (h.y > bg.height) {
+      h.y = -20;
+      h.x = Math.random() * bg.width;
+    }
+  });
+  requestAnimationFrame(animateBg);
+}
+
+animateBg();
