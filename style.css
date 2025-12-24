@@ -17,11 +17,12 @@ body {
   z-index: -1;
 }
 
-/* NAV */
+
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
+  padding-left: 5rem;
   background: #ede3ff;
   display: flex;
   align-items: center;
@@ -37,11 +38,12 @@ body {
 .nav-actions button {
   background: none;
   border: none;
+  padding-right: 1rem;
   color: #6b21a8;
   font-weight: 500;
 }
 
-/* LAYOUT */
+
 main {
   padding-top: 5rem;
   padding-inline: 1rem;
@@ -67,7 +69,7 @@ main {
   box-shadow: 0 10px 25px rgba(0,0,0,.05);
 }
 
-/* FORM */
+
 .form-grid {
   display: grid;
   gap: .75rem;
@@ -122,23 +124,34 @@ main {
   margin-top: .5rem;
 }
 
-/* LIST */
+
 .list-grid {
   display: grid;
   gap: .75rem;
 }
 
-/* FOOTER */
-.footer {
-  margin-top: 3rem;
-  padding: 1.5rem;
+
+.footer { 
+  padding-bottom: 1rem;
   text-align: center;
   color: #7c3aed;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 
-/* TABLET+ */
+
 @media (min-width: 768px) {
   .form-grid {
     grid-template-columns: repeat(2,1fr);
   }
 }
+
+#conteudoFicha.card {
+  background-image: url("assets/fundoficha.png");
+  background-blend-mode: multiply;
+  background-color: rgba(0,0,0,0);
+  background-size: cover;
+  background-position: center;
+  }
