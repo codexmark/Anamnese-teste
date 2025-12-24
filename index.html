@@ -5,17 +5,17 @@
     <title>Layne Estética Avançada</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Tailwind CDN (protótipo) -->
+    <!-- Tailwind CDN (protótipo apenas... nao usarei em produção pois não é performático) -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body class="bg-gradient">
-    <!-- Fundo animado -->
+    <!-- Fundo animado deu trabalho ver nos scritps o pau que levei-->
     <canvas id="bgCanvas"></canvas>
 
-    <!-- NAVBAR -->
+    <!-- NAVBAR simples  -->
     <nav class="navbar">
       <img src="assets/logonav.png" class="nav-logo" alt="Layne Estética" />
       <div class="nav-actions">
@@ -25,7 +25,7 @@
     </nav>
 
     <main>
-      <!-- CLIENTE -->
+      <!-- CLIENTE acesso publico -->
 
       <section id="cliente" class="section">
         <h2 class="title">Ficha de Anamnese</h2>
@@ -69,20 +69,24 @@
 
           <div id="perguntas" class="questions"></div>
 
-          <!-- ASSINATURA -->
-          <div class="signature-block">
-            <p class="label">Assinatura do cliente</p>
-            <canvas id="signaturePad" width="600" height="180"></canvas>
-            <button type="button" onclick="clearSignature()" class="link">
-              Limpar assinatura
-            </button>
+          <div class="spoiler-container">
+            <input type="checkbox" id="sig-spoiler" class="spoiler-toggle" />
+            <label for="sig-spoiler" class="spoiler-label">Assinar</label>
+
+            <div class="signature-block spoiler-content">
+              <p class="label">Assinatura do cliente</p>
+              <canvas id="signaturePad" width="600" height="180"></canvas>
+              <button type="button" onclick="clearSignature()" class="link">
+                Limpar assinatura
+              </button>
+            </div>
           </div>
 
           <button type="submit" class="btn-primary">Salvar ficha</button>
         </form>
       </section>
 
-      <!-- PROFISSIONAL -->
+      <!-- Área PROFISSIONAL -->
       <section id="profissional" class="section hidden">
         <h2 class="title">Pacientes</h2>
         <div id="listaPacientes" class="list-grid"></div>

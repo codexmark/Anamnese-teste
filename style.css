@@ -161,3 +161,26 @@ main {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+
+
+.spoiler-toggle {
+  display: none;
+}
+.spoiler-content {
+  display: none;
+  margin-top: 10px;
+}
+.spoiler-toggle:checked + .spoiler-label + .spoiler-content {
+  display: block;
+}
+.spoiler-label {
+  cursor: pointer;
+  padding: 1px 3px;
+  border: 0.5px solid #ddd;
+  border-radius: 4px;
+  display: inline-block;
+  font-weight: light;
+}
+.spoiler-toggle:checked + .spoiler-label {
+  background: #e0e0e0;
+}
